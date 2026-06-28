@@ -158,4 +158,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.railway.app",
+]
+
 ALLOWED_HOSTS = ["*"]
