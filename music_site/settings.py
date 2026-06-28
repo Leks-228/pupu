@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
 
-    # cloudinary (media storage)
+    # cloudinary
     'cloudinary_storage',
     'cloudinary',
 ]
@@ -86,20 +86,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'music_site.wsgi.application'
 
 # =========================
-# DATABASE (Railway PostgreSQL)
+# DATABASE (Railway PostgreSQL FIXED)
 # =========================
 
-import dj_database_url
-
 DATABASES = {
-    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
-}
-
-if os.environ.get("DATABASE_URL"):
-    DATABASES["default"] = dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
         conn_max_age=600,
+        ssl_require=True
     )
+}
 
 # =========================
 # AUTH
@@ -157,17 +153,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# =========================
+# SECURITY / CSRF
+# =========================
+
 CSRF_TRUSTED_ORIGINS = [
     "https://*.railway.app",
 ]
-
-ALLOWED_HOSTS = ["*"]
-
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
