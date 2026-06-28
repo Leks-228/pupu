@@ -157,3 +157,5 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # =========================
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ALLOWED_HOSTS = ["*"]
