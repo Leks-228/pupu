@@ -13,10 +13,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-dev-key-change-me")
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS",
-    "localhost,127.0.0.1,.railway.app"
-).split(",")
+ALLOWED_HOSTS = ['*']   # временно
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ваш-проект.vercel.app',   # замените на точное имя вашего проекта на Vercel
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 
 # =========================
